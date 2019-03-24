@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Mohammad Fatoni</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
+        <link rel="stylesheet" href="assets/fontawesome/css/all.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+        <script type="text/javascript" src="assets/js/jquery-3.2.1.js"></script>
+        <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+    </head>
+    <body>
+        <div class="top">
+            <div class="full bg-hitam">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-hitam">
+                        <a class="navbar-brand" href="index.html">Fatoni</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav mr-auto"></ul>
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="about.html">Tentang Penulis</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="portofolio.html">Portofolio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="modal" data-target="#exampleModalCenter" style="cursor:pointer">Kontak Langsung</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="my-5 row kalkporto">
+                <div class="titlecontent1"><div class="anti-miring">PROJECT 1</div></div>
+                <div class="container1 grey">
+                    <div class="kalkulator">
+                        <div class="isiKalkulator" id="button">
+                            <p id="tampilan"></p><hr><br>
+                            <div class="input">
+                                <input type="text" id="isiInput" class="datamasukan" value="0" readonly="true">
+                            </div><br>
+                            <div class="tombol1">
+                                <button class="btn1 blue " onclick="angka(1)">1</button>
+                                <button class="btn1 blue" onclick="angka(2)">2</button>
+                                <button class="btn1 blue"  onclick="angka(3)">3</button>
+                                <button class="btn1 yellow"  onclick="operator(3)"><span class="fas fa-plus"></span></button>
+                            </div>
+                            <div class="tombol1">
+                                <button class="btn1 blue" onclick="angka(4)">4</button>
+                                <button class="btn1 blue" onclick="angka(5)">5</button>
+                                <button class="btn1 blue" onclick="angka(6)">6</button>
+                                <button class="btn1 yellow" onclick="operator(2)"><span class="fa fa-minus"></span></button>
+                            </div>
+                            <div class="tombol1">
+                                <button class="btn1 blue" onclick="angka(7)">7</button>
+                                <button class="btn1 blue" onclick="angka(8)">8</button>
+                                <button class="btn1 blue" onclick="angka(9)">9</button>
+                                <button class="btn1 yellow" onclick="operator(1)"><span class="fa fa-times"></span></button>
+                            </div>
+                            <div class="tombol1">
+                                    <button onclick="location.reload(true)" class="btn1 red" >C</button>
+                                    <button onclick="angka(0)" class="btn1 blue">0</button>
+                                    <button onclick="angka('.')" class="btn1 blue" >.</button>
+                                    <button onclick="operator(0)" class="btn1 yellow"><span class="fa fa-divide"></span></button>
+                                </div>
+                            <div class="samaDengan">
+                                <button onclick="total()" class="btn1 green"><span class="fa fa-equals"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="my-5 row">
+                <div class="titlecontent1"><div class="anti-miring">PROJECT 2</div></div>
+                <div class="table-responsive-lg"><br>
+                    <table class="table table-bordered" id="sort">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Rotasi</th>
+                                <th>Orbit</th>
+                                <th>Diameter</th>
+                                <th>Iklim</th>
+                                <th>Gravitasi</th>
+                                <th>Pemandangan</th>
+                                <th>Ketinggian(MDPL)</th>
+                                <th>Populasi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="isi">
+                            <script type="text/javascript">
+                                var request = new XMLHttpRequest()
+                                var no=0;
+                                request.open('GET', 'https://swapi.co/api/planets/', true)
+                                request.onload = function() {
+                                    var data = JSON.parse(this.response)
+                                    for (var i = 0; i <= data.results.length - 1; i++) {
+                                        no++;
+                                        document.getElementById('isi').innerHTML+=
+                                        "<tr><td class='text-center'>"+
+                                        no+"</td><td>"+
+                                        data.results[i].name+"</td><td class='text-right'>"+
+                                        data.results[i].rotation_period+"</td><td class='text-right'>"+
+                                        data.results[i].orbital_period+"</td><td class='text-right'>"+
+                                        data.results[i].diameter+"</td><td>"+
+                                        data.results[i].climate+"</td><td class='text-right'>"+
+                                        data.results[i].gravity+"</td><td>"+
+                                        data.results[i].terrain+"</td><td class='text-right'>"+
+                                        data.results[i].surface_water+"</td><td class='text-right'>"+
+                                        data.results[i].population+"</td></tr>";
+                                    }
+                                }
+                                request.send()
+                            </script>
+                        </tbody>
+                    </table>
+                </div>
+                <small><i>Saya tidak memasukkan fungsi sortingnya kerena perbedaan versi, Silahkan cek digithub saya untuk fungsi sortingnya di repository exercise-3</i></small>
+            </div>
+            <div class="my-5 row">
+                <div class="titlecontent1"><div class="anti-miring">INFORMASI</div></div>
+                <div class="col-lg-6 tombol text-center"><br>
+                    <button type="button" class="btn btn-fb m-1"><i class="fab fa-facebook-f pr-1"></i> <a href="https://facebook.com/RadenMohammadFatoni">Facebook</a></button><br>
+                    <button type="button" class="btn btn-li m-1"><i class="fab fa-linkedin pr-1"></i><a href="https://www.linkedin.com/in/mohammad-fatoni/"> Linkedin</a></button><br>
+                    <button type="button" class="btn btn-ins m-1"><i class="fab fa-instagram pr-1"></i><a href="https://www.instagram.com/mohfatoni_/"> Instagram</a></button><br>
+                    <button type="button" class="btn btn-git m-1"><i class="fab fa-github pr-1"></i><a href="https://github.com/MohammadFatoni/"> Github</a></button><br>
+                </div>
+                <div class="col-lg-6"><br>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.1980436853555!2d106.8332030144855!3d-6.368411464069098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ec1187d55565%3A0x138adccbe16831f4!2sJl.+H.+M.+Tohir+70%2C+Pondok+Cina%2C+Beji%2C+Kota+Depok%2C+Jawa+Barat+16424!5e0!3m2!1sid!2sid!4v1544783646556" width="100%" height="90%" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div><br>
+        </div>
+        <footer class="page-footer font-small bg-hitam">
+            <div class="footer-copyright text-center py-3 text-light">© Mohammad Fatoni | mohfatoni@yahoo.com
+            </div>
+        </footer>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Kontak Saya</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form action="https://formspree.io/fatoni.testing@gmail.com" method="POST">
+                        <div class="form-group">
+                            <label>Email :</label>
+                            <input type="email" class="form-control"  name="email">
+                        </div>
+                        <div class="form-group">
+                            <label>Pesan :</label>
+                            <textarea class="form-control" rows="5" id="comment" name="pesan"></textarea>
+                        </div> 
+                        <div class="text-right"><button type="submit" class="btn">Kirim</button></div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        <script>
+			var isiInput=document.getElementById("isiInput").value;
+			var seluruh=document.getElementById("tampilan").innerHTML;
+			var operasi=[];
+			var hasil=0;
+			var param=0;
+			var angka,rumus,olah;
+			function angka(angka){
+				(isiInput == "0") ? isiInput= angka.toString() : isiInput += angka.toString();
+				document.getElementById("isiInput").value=isiInput;
+			}
+			function operator(simbol){
+				switch(simbol){
+					case 3 :
+					operasi.push(isiInput);
+					operasi.push("+")
+					isiInput='';
+					break;
+					case 2 :
+					operasi.push(isiInput);
+					operasi.push("-")
+					isiInput='';
+					break;
+					case 1 :
+					operasi.push(isiInput);
+					operasi.push("*")
+					isiInput='';
+					break;
+					case 0 :
+					operasi.push(isiInput);
+					operasi.push("/")
+					isiInput='';
+					break;
+				}
+				olah=operasi.toString().replace(/[\s,]+/g,"").trim();
+				document.getElementById("tampilan").innerHTML=olah;
+			}
+			function total() {
+				operasi.push(isiInput);
+				olah=operasi.toString().replace(/[\s,]+/g,"").trim();
+				rumus=eval(olah);
+				document.getElementById("tampilan").innerHTML=olah+"=";
+				document.getElementById("isiInput").value=rumus;
+				for (var i = 0; i <= operasi.length+250; i++) {
+					operasi.pop();
+				}
+				console.log(operasi.length);
+				param=0;
+				isiInput='';
+			}
+		</script>
+    </body>
+</html>
